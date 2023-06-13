@@ -2,6 +2,7 @@ package ecommerce.entities;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.sql.ResultSet;
 import java.util.Objects;
 
 public class Product implements Serializable {
@@ -12,7 +13,7 @@ public class Product implements Serializable {
     private Double price;
     private Integer quantity;
 
-    public Product () {
+    public Product (ResultSet rs) {
 
     }
 
