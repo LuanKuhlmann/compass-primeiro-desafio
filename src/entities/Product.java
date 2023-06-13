@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Product implements Serializable {
     @Serial
@@ -52,6 +53,19 @@ public class Product implements Serializable {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
