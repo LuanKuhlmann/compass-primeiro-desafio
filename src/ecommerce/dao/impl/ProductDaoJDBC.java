@@ -53,6 +53,24 @@ public class ProductDaoJDBC implements ProductDao {
 
     @Override
     public void update(Product obj) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement(
+                    "UPDATE product "
+                            + "SET ProductID = ?, ProductName = ?, ProductPrice = ?, Quantity = ?  "
+                            + "WHERE id = ?");
+
+            st.setInt(1, obj.getId());
+            st.setString(2, obj.getName());
+            st.setDouble(3, obj.getPrice());
+            st.setInt(4, obj.getQuantity());
+
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
 
     }
 
@@ -63,8 +81,32 @@ public class ProductDaoJDBC implements ProductDao {
 
     @Override
     public Product findById(Integer id) {
-        return null;
+
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement(
+                    "SELECT * FROM product "
+                            + "WHERE ProductID = ?");
+            st.setInt(1, id);
+            rs = st.executeQuery();
+            if (rs.next()) {
+                Product prod = new Product();
+                prod.setId(rs.getInt("ProductID"));
+                prod.setName(rs.getString("ProductName"));
+                prod.setPrice(rs.getDouble("ProductPrice"));
+                prod.setQuantity(rs.getInt("Quantity"));
+                return prod;
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
     }
+
 
     @Override
     public List<Product> findAll() {
