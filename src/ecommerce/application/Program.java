@@ -1,7 +1,4 @@
-package application;
-
-import db.DB;
-import entities.Product;
+package ecommerce.application;
 
 import java.sql.Connection;
 
