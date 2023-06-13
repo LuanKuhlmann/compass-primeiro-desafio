@@ -23,7 +23,10 @@ public class Program {
         //productDao.insert(newProduct2);
         //System.out.println("Inserted! New id = " + newProduct.getId());
 
-        System.out.println("TESTE findById");
-        System.out.println(prod);
+        //System.out.println("TESTE findById");
+        //System.out.println(prod);
+
+        System.out.println("TESTE delete");
+        productDao.deleteById(1);
     }
 }

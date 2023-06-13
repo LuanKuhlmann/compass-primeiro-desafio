@@ -76,6 +76,17 @@ public class ProductDaoJDBC implements ProductDao {
 
     @Override
     public void deleteById(Integer id) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement("DELETE FROM product WHERE ProductID = ?");
+            st.setInt(1, id);
+
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
 
     }
 
@@ -86,8 +97,7 @@ public class ProductDaoJDBC implements ProductDao {
         ResultSet rs = null;
         try {
             st = conn.prepareStatement(
-                    "SELECT * FROM product "
-                            + "WHERE ProductID = ?");
+                    "SELECT * FROM product WHERE ProductID = ?");
             st.setInt(1, id);
             rs = st.executeQuery();
             if (rs.next()) {
