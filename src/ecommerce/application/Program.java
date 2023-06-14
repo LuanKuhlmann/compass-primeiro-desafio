@@ -22,6 +22,7 @@ public class Program {
         ProductDao productDao = DaoFactory.createProductDao();
         ShoppingCart cart = new ShoppingCart();
         List<Product> products = productDao.findAll();
+        int id;
 
         System.out.println("1. Vendor");
         System.out.println("2. Client");
@@ -46,7 +47,7 @@ public class Program {
                         case 1:
                             System.out.println("Inform DATA");
                             System.out.print("Inform Product ID: ");
-                            int id = sc.nextInt();
+                            id = sc.nextInt();
                             System.out.print("Inform Product name: ");
                             sc.nextLine();
                             String name = sc.nextLine();
@@ -59,11 +60,57 @@ public class Program {
                             break;
                         case 2:
                             System.out.print("Inform Product ID: ");
-                            int idDelete = sc.nextInt();
-                            productDao.deleteById(idDelete);
+                            id = sc.nextInt();
+                            productDao.deleteById(id);
                             break;
                         case 3:
                             System.out.print("Inform Product ID: ");
+                            id = sc.nextInt();
+                            Product product = productDao.findById(id);
+                            System.out.println(product);
+                            System.out.println("What do you want to updade?");
+                            System.out.println("1. ID");
+                            System.out.println("2. Name");
+                            System.out.println("3. Price");
+                            System.out.println("4. Quantity");
+                            int opUpdate = sc.nextInt();
+
+                            switch (opUpdate) {
+                                case 1:
+                                    System.out.print("Inform new product ID: ");
+                                    int idUpdate = sc.nextInt();
+                                    product.setId(idUpdate);
+                                    productDao.update(product);
+                                    System.out.println("New Product DATA");
+                                    System.out.println(product);
+                                    break;
+                                case 2:
+                                    System.out.print("Inform new product name: ");
+                                    sc.nextLine();
+                                    String nameUpdate = sc.nextLine();
+                                    product.setName(nameUpdate);
+                                    productDao.update(product);
+                                    System.out.println("New Product DATA");
+                                    System.out.println(product);
+                                    break;
+                                case 3:
+                                    System.out.print("Inform new product price: ");
+                                    double priceUpdate = sc.nextDouble();
+                                    product.setPrice(priceUpdate);
+                                    productDao.update(product);
+                                    System.out.println("New Product DATA");
+                                    System.out.println(product);
+                                    break;
+                                case 4:
+                                    System.out.print("Inform new product quantity: ");
+                                    int quantityUpdate = sc.nextInt();
+                                    product.setQuantity(quantityUpdate);
+                                    productDao.update(product);
+                                    System.out.println("New Product DATA");
+                                    System.out.println(product);
+                                    break;
+                            }
+
                             break;
                         case 4:
                             List<Product> list = productDao.findAll();
@@ -97,8 +144,8 @@ public class Program {
                             break;
                         case 2:
                             System.out.print("Inform product ID: ");
-                            int num = sc.nextInt();
-                            cart.addProduct(products.get(num));
+                            id = sc.nextInt();
+                            cart.addProduct(products.get(id));
                             break;
                         case 3:
                             break;

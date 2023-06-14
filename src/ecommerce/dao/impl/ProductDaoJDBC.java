@@ -58,8 +58,8 @@ public class ProductDaoJDBC implements ProductDao {
         try {
             st = conn.prepareStatement(
                     "UPDATE product "
-                            + "SET ProductID = ?, ProductName = ?, ProductPrice = ?, Quantity = ?  "
-                            + "WHERE id = ?");
+                            + "SET ProductID = ?, ProductName = ?, ProductPrice = ?, Quantity = ?  ");
+                            //+ "WHERE ProductID = ?");
 
             st.setInt(1, obj.getId());
             st.setString(2, obj.getName());
