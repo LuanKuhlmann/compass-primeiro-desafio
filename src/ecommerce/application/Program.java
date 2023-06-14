@@ -22,7 +22,6 @@ public class Program {
         ProductDao productDao = DaoFactory.createProductDao();
         ShoppingCart cart = new ShoppingCart();
         List<Product> products = productDao.findAll();
-        int id;
 
         System.out.println("1. Vendor");
         System.out.println("2. Client");
@@ -47,7 +46,7 @@ public class Program {
                         case 1:
                             System.out.println("Inform DATA");
                             System.out.print("Inform Product ID: ");
-                            id = sc.nextInt();
+                            int id = sc.nextInt();
                             System.out.print("Inform Product name: ");
                             sc.nextLine();
                             String name = sc.nextLine();
@@ -60,13 +59,13 @@ public class Program {
                             break;
                         case 2:
                             System.out.print("Inform Product ID: ");
-                            id = sc.nextInt();
-                            productDao.deleteById(id);
+                            int idRemove = sc.nextInt();
+                            productDao.deleteById(idRemove);
                             break;
                         case 3:
                             System.out.print("Inform Product ID: ");
-                            id = sc.nextInt();
-                            Product product = productDao.findById(id);
+                            int idUpdate = sc.nextInt();
+                            Product product = productDao.findById(idUpdate);
                             System.out.println(product);
                             System.out.println("What do you want to updade?");
                             System.out.println("1. ID");
@@ -78,8 +77,8 @@ public class Program {
                             switch (opUpdate) {
                                 case 1:
                                     System.out.print("Inform new product ID: ");
-                                    int idUpdate = sc.nextInt();
-                                    product.setId(idUpdate);
+                                    int idToUpdate = sc.nextInt();
+                                    product.setId(idToUpdate);
                                     productDao.update(product);
                                     System.out.println("New Product DATA");
                                     System.out.println(product);
@@ -143,13 +142,13 @@ public class Program {
                             break;
                         case 2:
                             System.out.print("Inform product ID: ");
-                            id = sc.nextInt();
+                            int id = sc.nextInt();
                             cart.addProduct(products.get(id));
                             break;
                         case 3:
                             System.out.print("Inform product ID: ");
-                            id = sc.nextInt();
-                            cart.removeProduct(products.get(id));
+                            int idRemove = sc.nextInt();
+                            cart.removeProduct(products.get(idRemove));
                             break;
                         case 4:
                             double total = cart.calculateTotal();
