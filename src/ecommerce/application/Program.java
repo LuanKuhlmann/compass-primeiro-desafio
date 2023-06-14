@@ -130,9 +130,8 @@ public class Program {
                     System.out.println("1. Show Product List");
                     System.out.println("2. Add Product");
                     System.out.println("3. Remove Product");
-                    System.out.println("4. Update Product");
-                    System.out.println("5. Show Products in Cart and Total");
-                    System.out.println("6. Checkout");
+                    System.out.println("4. Show Products in Cart and Total");
+                    System.out.println("5. Checkout");
                     int opClient = sc.nextInt();
 
                     switch (opClient) {
@@ -148,24 +147,39 @@ public class Program {
                             cart.addProduct(products.get(id));
                             break;
                         case 3:
+                            System.out.print("Inform product ID: ");
+                            id = sc.nextInt();
+                            cart.removeProduct(products.get(id));
                             break;
                         case 4:
-                            break;
-                        case 5:
                             double total = cart.calculateTotal();
                             System.out.println("Products in cart:");
                             for (Product product : cart.getProducts()) {
-                                System.out.println(product.getName());
+                                System.out.printf("Product: %s Price: %.2f ", product.getName(), product.getPrice());
+                                System.out.println();
                             }
                             System.out.println("Total value: $" + total);
                             break;
-                        case 6:
-                            checkout = true;
+                        case 5:
+                            double totalFinal = cart.calculateTotal();
+                            System.out.println("Products in cart:");
+                            for (Product product : cart.getProducts()) {
+                                System.out.println(product);
+                            }
+                            System.out.println("The total value of products in the shopping cart is: $" + totalFinal);
+                            System.out.println();
+                            System.out.println("Confirm transaction? 1. Yes / 2. No");
+                            int num = sc.nextInt();
+                            if(num == 1) {
+                                System.out.println("Completed transaction, thank you!");
+                                checkout = true;
+                            }
                             break;
                     }
                 }
                 op = 0;
             } else {
+                System.out.println();
                 System.out.println("Exiting program");
                 confirmation = true;
             }
