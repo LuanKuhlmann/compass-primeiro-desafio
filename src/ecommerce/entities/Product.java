@@ -14,11 +14,9 @@ public class Product implements Serializable {
     private Integer quantity;
 
     public Product (ResultSet rs) {
-
     }
 
-    public Product(Integer id, String name, Double price, Integer quantity) {
-        this.id = id;
+    public Product(String name, Double price, Integer quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;

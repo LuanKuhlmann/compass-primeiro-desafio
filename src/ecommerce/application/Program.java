@@ -2,7 +2,6 @@ package ecommerce.application;
 
 import ecommerce.dao.DaoFactory;
 import ecommerce.dao.ProductDao;
-import ecommerce.dao.impl.ProductDaoJDBC;
 import ecommerce.entities.Product;
 import ecommerce.entities.ShoppingCart;
 
@@ -28,6 +27,8 @@ public class Program {
         System.out.println("3. Exit");
         System.out.print("Enter your choice: ");
         int op = sc.nextInt();
+        System.out.println("-------------------------------");
+
 
         while (!confirmation) {
 
@@ -41,12 +42,11 @@ public class Program {
                     System.out.println("4. Show Product List");
                     System.out.println("5. Exit");
                     int opVendor = sc.nextInt();
+                    System.out.println("-------------------------------");
 
                     switch (opVendor) {
                         case 1:
                             System.out.println("Inform DATA");
-                            System.out.print("Inform Product ID: ");
-                            int id = sc.nextInt();
                             System.out.print("Inform Product name: ");
                             sc.nextLine();
                             String name = sc.nextLine();
@@ -54,13 +54,18 @@ public class Program {
                             double price = sc.nextDouble();
                             System.out.print("Inform quantity: ");
                             int quantity = sc.nextInt();
-                            Product newProduct = new Product(id, name, price, quantity);
+                            System.out.println();
+                            Product newProduct = new Product(name, price, quantity);
                             productDao.insert(newProduct);
+                            System.out.println("Product created!");
+                            System.out.println(newProduct);
+                            System.out.println("-------------------------------");
                             break;
                         case 2:
                             System.out.print("Inform Product ID: ");
                             int idRemove = sc.nextInt();
                             productDao.deleteById(idRemove);
+                            System.out.println("-------------------------------");
                             break;
                         case 3:
                             System.out.print("Inform Product ID: ");
@@ -82,6 +87,7 @@ public class Program {
                                     productDao.update(product);
                                     System.out.println("New Product DATA");
                                     System.out.println(product);
+                                    System.out.println();
                                     break;
                                 case 2:
                                     System.out.print("Inform new product name: ");
@@ -91,6 +97,7 @@ public class Program {
                                     productDao.update(product);
                                     System.out.println("New Product DATA");
                                     System.out.println(product);
+                                    System.out.println();
                                     break;
                                 case 3:
                                     System.out.print("Inform new product price: ");
@@ -99,6 +106,7 @@ public class Program {
                                     productDao.update(product);
                                     System.out.println("New Product DATA");
                                     System.out.println(product);
+                                    System.out.println();
                                     break;
                                 case 4:
                                     System.out.print("Inform new product quantity: ");
@@ -107,15 +115,17 @@ public class Program {
                                     productDao.update(product);
                                     System.out.println("New Product DATA");
                                     System.out.println(product);
+                                    System.out.println();
                                     break;
                             }
-
+                            System.out.println("-------------------------------");
                             break;
                         case 4:
                             List<Product> list = productDao.findAll();
                             for (Product obj : list) {
                                 System.out.println(obj);
                             }
+                            System.out.println("-------------------------------");
                             break;
                         case 5:
                             confirmationVendor = true;
@@ -132,6 +142,7 @@ public class Program {
                     System.out.println("4. Show Products in Cart and Total");
                     System.out.println("5. Checkout");
                     int opClient = sc.nextInt();
+                    System.out.println("-------------------------------");
 
                     switch (opClient) {
                         case 1:
@@ -139,40 +150,49 @@ public class Program {
                             for (Product obj : list) {
                                 System.out.println(obj);
                             }
+                            System.out.println("-------------------------------");
                             break;
                         case 2:
                             System.out.print("Inform product ID: ");
                             int id = sc.nextInt();
                             cart.addProduct(products.get(id));
+                            System.out.println("-------------------------------");
                             break;
                         case 3:
                             System.out.print("Inform product ID: ");
                             int idRemove = sc.nextInt();
                             cart.removeProduct(products.get(idRemove));
+                            System.out.println("-------------------------------");
                             break;
                         case 4:
-                            double total = cart.calculateTotal();
                             System.out.println("Products in cart:");
                             for (Product product : cart.getProducts()) {
                                 System.out.printf("Product: %s Price: %.2f ", product.getName(), product.getPrice());
-                                System.out.println();
                             }
+                            double total = cart.calculateTotal();
                             System.out.println("Total value: $" + total);
+                            System.out.println("-------------------------------");
                             break;
                         case 5:
                             double totalFinal = cart.calculateTotal();
                             System.out.println("Products in cart:");
                             for (Product product : cart.getProducts()) {
-                                System.out.println(product);
+                                System.out.printf("Product: %s Price: %.2f ", product.getName(), product.getPrice());
                             }
                             System.out.println("The total value of products in the shopping cart is: $" + totalFinal);
-                            System.out.println();
                             System.out.println("Confirm transaction? 1. Yes / 2. No");
                             int num = sc.nextInt();
                             if(num == 1) {
+                                for (Product product : products) {
+                                   int productId = product.getId();
+                                    int quantity = product.getQuantity();
+                                    productDao.updateProductQuantity(productId, quantity - 1);
+                                }
+                                products.clear();
                                 System.out.println("Completed transaction, thank you!");
                                 checkout = true;
                             }
+                            System.out.println("-------------------------------");
                             break;
                     }
                 }

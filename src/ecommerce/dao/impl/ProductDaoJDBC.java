@@ -22,15 +22,14 @@ public class ProductDaoJDBC implements ProductDao {
         try {
             st = conn.prepareStatement(
                     "INSERT INTO product "
-                    + "(ProductID, ProductName, ProductPrice, Quantity) "
+                    + "(ProductName, ProductPrice, Quantity) "
                     + "VALUES "
-                    + "(?, ? ,? ,?)" ,
+                    + "(?, ? ,?)" ,
                     Statement.RETURN_GENERATED_KEYS);
 
-            st.setInt(1, obj.getId());
-            st.setString(2, obj.getName());
-            st.setDouble(3, obj.getPrice());
-            st.setInt(4, obj.getQuantity());
+            st.setString(1, obj.getName());
+            st.setDouble(2, obj.getPrice());
+            st.setInt(3, obj.getQuantity());
 
             int rowsAffected = st.executeUpdate();
 
@@ -90,6 +89,22 @@ public class ProductDaoJDBC implements ProductDao {
             DB.closeStatement(st);
         }
 
+    }
+
+    @Override
+    public void updateProductQuantity(Integer id, Integer quantity) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement("UPDATE product SET Quantity = ? WHERE ProductID = ?");
+            st.setInt(1, quantity);
+            st.setInt(2, id);
+
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
