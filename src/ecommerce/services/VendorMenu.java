@@ -20,6 +20,12 @@ public class VendorMenu {
     }
     public static void createProduct(Scanner sc) {
         System.out.println("Inform DATA");
+        System.out.print("Inform Product ID: ");
+        int id = sc.nextInt();
+        if (productDao.findById(id) != null) {
+            System.out.println("Product with ID " + id + " already exists. Cannot create another product with the same ID.");
+            return;
+        }
         System.out.print("Inform Product name: ");
         sc.nextLine();
         String name = sc.nextLine();
@@ -28,7 +34,7 @@ public class VendorMenu {
         System.out.print("Inform quantity: ");
         int quantity = sc.nextInt();
         System.out.println();
-        Product newProduct = new Product(name, price, quantity);
+        Product newProduct = new Product(id, name, price, quantity);
         productDao.insert(newProduct);
         System.out.println("Product created!");
         System.out.println(newProduct);

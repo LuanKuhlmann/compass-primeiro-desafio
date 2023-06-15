@@ -20,7 +20,7 @@ public class ShoppingCart {
                 return;
             }
         }
-        Product newProduct = new Product(product.getName(), product.getPrice(), quantity);
+        Product newProduct = new Product(product.getId(), product.getName(), product.getPrice(), quantity);
         items.add(newProduct);
     }
 

@@ -22,14 +22,15 @@ public class ProductDaoJDBC implements ProductDao {
         try {
             st = conn.prepareStatement(
                     "INSERT INTO product "
-                    + "(ProductName, ProductPrice, Quantity) "
+                    + "(ProductID, ProductName, ProductPrice, Quantity) "
                     + "VALUES "
-                    + "(?, ? ,?)" ,
+                    + "(?, ?, ? ,?)" ,
                     Statement.RETURN_GENERATED_KEYS);
 
-            st.setString(1, obj.getName());
-            st.setDouble(2, obj.getPrice());
-            st.setInt(3, obj.getQuantity());
+            st.setInt(1, obj.getId());
+            st.setString(2, obj.getName());
+            st.setDouble(3, obj.getPrice());
+            st.setInt(4, obj.getQuantity());
 
             int rowsAffected = st.executeUpdate();
 

@@ -66,8 +66,8 @@ public class Program {
                 while (!checkout) {
 
                     System.out.println("1. Show Product List");
-                    System.out.println("2. Add Product");
-                    System.out.println("3. Remove Product");
+                    System.out.println("2. Add Product to Cart");
+                    System.out.println("3. Remove Product from Cart");
                     System.out.println("4. Checkout");
                     int opClient = sc.nextInt();
                     System.out.println("-------------------------------");
