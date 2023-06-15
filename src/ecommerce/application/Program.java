@@ -2,14 +2,10 @@ package ecommerce.application;
 
 import ecommerce.services.ShoppingCartMenu;
 import ecommerce.services.VendorMenu;
-
-import java.sql.Connection;
 import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
-
-        Connection conn = null;
 
         Scanner sc = new Scanner(System.in);
 
@@ -35,6 +31,7 @@ public class Program {
                     System.out.println("3. Update Product");
                     System.out.println("4. Show Product List");
                     System.out.println("5. Exit");
+                    System.out.print("Enter your choice: ");
                     int opVendor = sc.nextInt();
                     System.out.println("-------------------------------");
 
@@ -51,11 +48,8 @@ public class Program {
                         case 4:
                             VendorMenu.productList();
                             break;
-                        case 5:
-                            confirmationVendor = true;
-                            break;
                         default:
-                            System.out.println("Inform a valid option!");
+                            confirmationVendor = true;
                             break;
                     }
                 }
@@ -67,34 +61,39 @@ public class Program {
 
                     System.out.println("1. Show Product List");
                     System.out.println("2. Add Product to Cart");
-                    System.out.println("3. Remove Product from Cart");
+                    System.out.println("3. Remove Product from Cart ");
                     System.out.println("4. Checkout");
+                    System.out.print("Enter your choice: ");
                     int opClient = sc.nextInt();
                     System.out.println("-------------------------------");
 
                     switch (opClient) {
                         case 1:
                             VendorMenu.productList();
+                            System.out.println("-------------------------------");
                             break;
                         case 2:
                             ShoppingCartMenu.addItemToCart(sc);
+                            System.out.println("-------------------------------");
                             break;
                         case 3:
                             ShoppingCartMenu.removeItemFromCart(sc);
+                            System.out.println("-------------------------------");
                             break;
                         case 4:
                             ShoppingCartMenu.checkout(sc);
+                            System.out.println("-------------------------------");
                             checkout = true;
                             break;
                         default:
-                            System.out.println("Inform a valid option!");
+                            System.out.println("Inform a valid option.");
+                            System.out.println("-------------------------------");
                             break;
                     }
                     op = 0;
                 }
             } else {
-                System.out.println();
-                System.out.println("Exiting program");
+                System.out.println("Exiting program.");
                 confirmation = true;
             }
         }

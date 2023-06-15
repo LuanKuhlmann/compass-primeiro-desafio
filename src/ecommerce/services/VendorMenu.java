@@ -13,8 +13,8 @@ public class VendorMenu {
 
     public static void productList() {
         List<Product> list = productDao.findAll();
-        for (Product obj : list) {
-            System.out.println(obj);
+        for (Product products : list) {
+            System.out.println(products);
         }
         System.out.println("-------------------------------");
     }
@@ -23,7 +23,7 @@ public class VendorMenu {
         System.out.print("Inform Product ID: ");
         int id = sc.nextInt();
         if (productDao.findById(id) != null) {
-            System.out.println("Product with ID " + id + " already exists. Cannot create another product with the same ID.");
+            System.out.println("ID " + id + " already in use.");
             return;
         }
         System.out.print("Inform Product name: ");
@@ -33,32 +33,31 @@ public class VendorMenu {
         double price = sc.nextDouble();
         System.out.print("Inform quantity: ");
         int quantity = sc.nextInt();
-        System.out.println();
         Product newProduct = new Product(id, name, price, quantity);
         productDao.insert(newProduct);
-        System.out.println("Product created!");
+        System.out.println("Product created.");
         System.out.println(newProduct);
-        System.out.println("-------------------------------");
     }
 
     public static void removeProduct(Scanner sc) {
         System.out.print("Inform Product ID: ");
-        int idRemove = sc.nextInt();
-        productDao.deleteById(idRemove);
-        System.out.println("-------------------------------");
+        int id = sc.nextInt();
+        productDao.deleteById(id);
+        System.out.println("Product removed.");
     }
 
     public static void updateProduct(Scanner sc) {
         System.out.print("Inform Product ID: ");
-        int idUpdate = sc.nextInt();
-        Product product = productDao.findById(idUpdate);
+        int id = sc.nextInt();
+        Product product = productDao.findById(id);
         System.out.println(product);
-        System.out.println("What do you want to updade?");
+        System.out.println("Inform which data to update:");
         System.out.println("1. ID");
         System.out.println("2. Name");
         System.out.println("3. Price");
         System.out.println("4. Quantity");
         System.out.println("5. Exit");
+        System.out.print("Enter your choice: ");
         int opUpdate = sc.nextInt();
 
         switch (opUpdate) {
@@ -67,39 +66,40 @@ public class VendorMenu {
                 int idToUpdate = sc.nextInt();
                 product.setId(idToUpdate);
                 productDao.update(product);
+                System.out.println("Product Updated.");
                 System.out.println("New Product DATA");
                 System.out.println(product);
-                System.out.println();
                 break;
             case 2:
                 System.out.print("Inform new product name: ");
                 sc.nextLine();
-                String nameUpdate = sc.nextLine();
-                product.setName(nameUpdate);
+                String name = sc.nextLine();
+                product.setName(name);
                 productDao.update(product);
+                System.out.println("Product Updated.");
                 System.out.println("New Product DATA");
                 System.out.println(product);
-                System.out.println();
                 break;
             case 3:
                 System.out.print("Inform new product price: ");
-                double priceUpdate = sc.nextDouble();
-                product.setPrice(priceUpdate);
+                double price = sc.nextDouble();
+                product.setPrice(price);
                 productDao.update(product);
+                System.out.println("Product Updated.");
                 System.out.println("New Product DATA");
                 System.out.println(product);
-                System.out.println();
                 break;
             case 4:
                 System.out.print("Inform new product quantity: ");
-                int quantityUpdate = sc.nextInt();
-                product.setQuantity(quantityUpdate);
+                int quantity = sc.nextInt();
+                product.setQuantity(quantity);
                 productDao.update(product);
+                System.out.println("Product Updated.");
                 System.out.println("New Product DATA");
                 System.out.println(product);
-                System.out.println();
                 break;
-            case 5:
+            default:
+                System.out.println("Exiting update chart.");
                 break;
         }
     }

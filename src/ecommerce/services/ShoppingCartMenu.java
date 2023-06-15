@@ -10,58 +10,62 @@ import java.util.Scanner;
 
 public class ShoppingCartMenu {
     private static ProductDao productDao = DaoFactory.createProductDao();
-    private static ShoppingCart cart = new ShoppingCart();
+    private static ShoppingCart shoppingCart = new ShoppingCart();
 
     public static void addItemToCart(Scanner sc) {
         List<Product> products = productDao.findAll();
-        System.out.println("Products in store: ");
+        System.out.println("Products in store:");
+
         for (Product product : products) {
             System.out.println("ID: " + product.getId() + ". " + "Name: " + product.getName() + " - $" + product.getPrice());
         }
-        System.out.print("Enter the ID of the product to add to cart: ");
-        int productId = sc.nextInt();
-        System.out.print("Enter the quantity: ");
+        System.out.print("Inform the product ID you want to add to cart: ");
+        int id = sc.nextInt();
+        System.out.print("Inform the quantity: ");
         int quantity = sc.nextInt();
+
         for (Product product : products) {
-            if (product.getId() == productId) {
-                cart.addItem(product, quantity);
+            if (product.getId() == id && product.getQuantity() > 0) {
+                shoppingCart.addItem(product, quantity);
                 System.out.println("Product added to cart.");
                 return;
             }
         }
-        System.out.println("Invalid product ID.");
+        System.out.println("Invalid product ID or not enough items in stock.");
     }
 
     public static void removeItemFromCart(Scanner sc) {
-        List<Product> items = cart.getItems();
+        List<Product> items = shoppingCart.getItems();
         System.out.println("Items in cart:");
+
         for (Product item : items) {
             System.out.println(item.getId() + ". " + item.getName() + " - Quantity: " + item.getQuantity());
         }
-        System.out.print("Enter the ID of the product to remove from cart: ");
-        int productId = sc.nextInt();
-        sc.nextLine();
+        System.out.print("Inform the product ID you want to remove from cart: ");
+        int id = sc.nextInt();
         System.out.print("Enter the quantity: ");
         int quantity = sc.nextInt();
         sc.nextLine();
 
         for (Product item : items) {
-            if (item.getId() == productId) {
-                cart.removeItem(item, quantity);
+            if (item.getId() == id) {
+                shoppingCart.removeItem(item, quantity);
                 System.out.println("Product removed from cart.");
                 return;
             }
         }
+
         System.out.println("Invalid product ID or quantity.");
     }
 
     public static void totalValueInCart() {
-        List<Product> items = cart.getItems();
+        List<Product> products = shoppingCart.getItems();
         System.out.println("Items in cart: ");
-        for (Product item : items) {
-            System.out.println(item.getId() + ". " + item.getName() + " - Quantity: " + item.getQuantity());
+
+        for (Product product : products) {
+            System.out.println(product.getId() + ". " + product.getName() + " - Quantity: " + product.getQuantity());
         }
-        System.out.println("Total: $" + cart.getTotal());
+        System.out.println("Total: $" + shoppingCart.getTotal());
     }
 
     public static Product getProductById(Integer id) {
@@ -77,9 +81,9 @@ public class ShoppingCartMenu {
     public static void checkout(Scanner sc) {
         totalValueInCart();
         System.out.println("Confirm purchase? 1. Yes/ 2. No):");
-        int choice = sc.nextInt();
-        if (choice == 1) {
-            List<Product> items = cart.getItems();
+        int op = sc.nextInt();
+        if (op == 1) {
+            List<Product> items = shoppingCart.getItems();
             for (Product item : items) {
                 Product product = getProductById(item.getId());
                 if (product != null) {
@@ -87,9 +91,9 @@ public class ShoppingCartMenu {
                     productDao.updateProductQuantity(product.getId(), product.getQuantity());
                 }
             }
-            System.out.println("Sale confirmed.");
+            System.out.println("Purchase confirmed.");
         } else {
-            System.out.println("Sale canceled.");
+            System.out.println("Purchase canceled.");
         }
     }
 }

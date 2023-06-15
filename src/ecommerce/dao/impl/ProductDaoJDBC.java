@@ -42,7 +42,7 @@ public class ProductDaoJDBC implements ProductDao {
                 }
                 DB.closeResultSet(rs);
             } else {
-                throw new DbException("Unexpected error! No tows affected!");
+                throw new DbException("Unexpected error! No rows affected!");
             }
 
         } catch (SQLException e) {
