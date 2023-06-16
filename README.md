@@ -6,10 +6,12 @@ Com o MySql instalado, execute a query: "CREATE DATABASE ecommerce".
 
 Atualize e clique no banco de dados criado.
 
-Abra o pacote do pagrama em uma IDE de sua escolha.
+Em "Server", va em "Data Import" e importe o arquivo "ecommerce_product.sql" que se encontra na branch "Main" desse repositorio.
 
-Extraia a pasta do arquivo "mysql-connector-j-8.0.33.zip" e a adicione como external library.
-(Esta pasta é o conector necessario para o JDBC funcionar com o MySql).
+Abra o pacote do pagrama que se encontra na branch "Master" em uma IDE de sua escolha.
+
+Extraia a pasta do arquivo "mysql-connector-j-8.0.33.zip" que se encontra na branch "Main" desse repositorio e a adicione como external library.
+!!!(Esta pasta é o conector necessario para o JDBC funcionar com o MySql)!!!
 
 Já no programa, acesse db.properties.
 
