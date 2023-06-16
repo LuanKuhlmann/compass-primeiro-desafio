@@ -1,5 +1,10 @@
 # compass-primeiro-desafio
 
+Acesse e instale o MySql pelo link: https://dev.mysql.com/downloads/mysql/
+Com o MySql instalado, execute a query: "CREATE DATABASE ecommerce"
+Atualize e clique no banco de dados criado
+
+
 # DESAFIO 1
 
 A very important client asked us to create an E-commerce system for his company and that an MVP was initially shown so that they could follow the project in other steps.
