@@ -11,7 +11,7 @@ CREATE DATABASE ecommerce
 ```
  
 
-Atualize e clique no banco de dados criado.
+Atualize e selecione o banco de dados criado.
 
 Em "Server", va em "Data Import" e importe o arquivo "ecommerce_product.sql" que se encontra na branch "Main" desse repositorio.
 
