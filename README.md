@@ -1,6 +1,8 @@
 # compass-primeiro-desafio
 
-Acesse e instale o MySql pelo link: https://dev.mysql.com/downloads/mysql/.
+Acesse e instale o MySql pelo link: 
+
+> https://dev.mysql.com/downloads/mysql/.
 
 Com o MySql instalado, execute a query: 
 
