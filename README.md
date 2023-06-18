@@ -21,11 +21,12 @@ Extraia a pasta do arquivo "mysql-connector-j-8.0.33.zip" que se encontra na bra
 Já no programa, acesse db.properties.
 
 Em db.properties você vera a seguinte tela: 
-
+```
 user=****         /// Aqui você ira inserir seu username
 password=***      /// Aqui voce ira inserir seu password
 url=jdbc:mysql://localhost:3306/ecommerce        /// Aqui voce ira inserir seu localhost, sua port e mantera "/ecommerce" como seu banco de dados
 useSSL=false
+```
 
 Agora no modulo "application", execute o programa a partir da classe "Program".
 
