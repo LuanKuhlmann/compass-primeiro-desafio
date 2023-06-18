@@ -18,7 +18,7 @@ Em "Server", va em "Data Import" e importe o arquivo "ecommerce_product.sql" que
 Abra o pacote do pagrama que se encontra na branch "Master" em uma IDE de sua escolha.
 
 Extraia a pasta do arquivo "mysql-connector-j-8.0.33.zip" que se encontra na branch "Main" desse repositorio e a adicione como external library.
-```Esta pasta é o conector necessario para o JDBC funcionar com o MySql)```
+```Esta pasta é o conector necessario para o JDBC funcionar com o MySql```
 
 Já no programa, acesse db.properties.
 
