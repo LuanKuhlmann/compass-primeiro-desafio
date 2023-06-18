@@ -2,7 +2,12 @@
 
 Acesse e instale o MySql pelo link: https://dev.mysql.com/downloads/mysql/.
 
-Com o MySql instalado, execute a query: "CREATE DATABASE ecommerce".
+Com o MySql instalado, execute a query: 
+
+```
+CREATE DATABASE ecommerce
+```
+ 
 
 Atualize e clique no banco de dados criado.
 
