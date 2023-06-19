@@ -23,6 +23,14 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
+    // Esse construtor seria usado caso o AUTO INCREMENT no db fosse aplicado, preferi continuar com a criação de ID para dar mais controle ao vendedor
+
+    /*public Product(String name, Double price, Integer quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }*/
+
     public Integer getId() {
         return id;
     }
