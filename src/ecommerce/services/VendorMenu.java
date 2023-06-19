@@ -24,6 +24,7 @@ public class VendorMenu {
         int id = sc.nextInt();
         if (productDao.findById(id) != null) {
             System.out.println("ID " + id + " already in use.");
+            System.out.println("-------------------------------");
             return;
         }
         System.out.print("Inform Product name: ");
@@ -37,6 +38,7 @@ public class VendorMenu {
         productDao.insert(newProduct);
         System.out.println("Product created.");
         System.out.println(newProduct);
+        System.out.println("-------------------------------");
     }
 
     public static void removeProduct(Scanner sc) {
@@ -44,6 +46,7 @@ public class VendorMenu {
         int id = sc.nextInt();
         productDao.deleteById(id);
         System.out.println("Product removed.");
+        System.out.println("-------------------------------");
     }
 
     public static void updateProduct(Scanner sc) {
@@ -59,9 +62,10 @@ public class VendorMenu {
         System.out.println("5. Exit");
         System.out.print("Enter your choice: ");
         int opUpdate = sc.nextInt();
+        System.out.println("-------------------------------");
 
         switch (opUpdate) {
-            case 1:
+            case 1 -> {
                 System.out.print("Inform new product ID: ");
                 int idToUpdate = sc.nextInt();
                 product.setId(idToUpdate);
@@ -69,8 +73,9 @@ public class VendorMenu {
                 System.out.println("Product Updated.");
                 System.out.println("New Product DATA");
                 System.out.println(product);
-                break;
-            case 2:
+                System.out.println("-------------------------------");
+            }
+            case 2 -> {
                 System.out.print("Inform new product name: ");
                 sc.nextLine();
                 String name = sc.nextLine();
@@ -79,8 +84,9 @@ public class VendorMenu {
                 System.out.println("Product Updated.");
                 System.out.println("New Product DATA");
                 System.out.println(product);
-                break;
-            case 3:
+                System.out.println("-------------------------------");
+            }
+            case 3 -> {
                 System.out.print("Inform new product price: ");
                 double price = sc.nextDouble();
                 product.setPrice(price);
@@ -88,8 +94,9 @@ public class VendorMenu {
                 System.out.println("Product Updated.");
                 System.out.println("New Product DATA");
                 System.out.println(product);
-                break;
-            case 4:
+                System.out.println("-------------------------------");
+            }
+            case 4 -> {
                 System.out.print("Inform new product quantity: ");
                 int quantity = sc.nextInt();
                 product.setQuantity(quantity);
@@ -97,11 +104,12 @@ public class VendorMenu {
                 System.out.println("Product Updated.");
                 System.out.println("New Product DATA");
                 System.out.println(product);
-                break;
-            default:
+                System.out.println("-------------------------------");
+            }
+            default -> {
                 System.out.println("Exiting update chart.");
-                break;
+                System.out.println("-------------------------------");
+            }
         }
     }
-
 }
