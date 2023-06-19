@@ -1,36 +1,35 @@
 # compass-primeiro-desafio
 
-Acesse e instale o MySql pelo link: 
+Access and install MySql through the link: 
 
 > https://dev.mysql.com/downloads/mysql/.
 
-Com o MySql instalado, execute a query: 
+With MySql installed, run the query: 
 
 ```
 CREATE DATABASE ecommerce
 ```
  
+Update and select the created database.
 
-Atualize e selecione o banco de dados criado.
+In "Server", go to "Data Import" and import the file "ecommerce_product.sql" found in the "Main" branch of this repository.
 
-Em "Server", va em "Data Import" e importe o arquivo "ecommerce_product.sql" que se encontra na branch "Main" desse repositorio.
+Open the program package found in the "Master" branch in an IDE of your choice.
 
-Abra o pacote do pagrama que se encontra na branch "Master" em uma IDE de sua escolha.
+Extract the folder from the "mysql-connector-j-8.0.33.zip" file found in the "Main" branch of this repository and add it as an external library.
+```This folder is the necessary connector for JDBC to work with MySql```
 
-Extraia a pasta do arquivo "mysql-connector-j-8.0.33.zip" que se encontra na branch "Main" desse repositorio e a adicione como external library.
-```Esta pasta é o conector necessario para o JDBC funcionar com o MySql```
+Now access db.properties.
 
-Já no programa, acesse db.properties.
-
-Em db.properties você vera a seguinte tela: 
+In db.properties you will see the following screen:
 ```
-user=****         /// Aqui você ira inserir seu username
-password=***      /// Aqui voce ira inserir seu password
-url=jdbc:mysql://localhost:3306/ecommerce        /// Aqui voce ira inserir seu localhost, sua port e mantera "/ecommerce" como seu banco de dados
+user=****         /// Here you will enter your username
+password=***      /// Here you will enter your password
+url=jdbc:mysql://localhost:3306/ecommerce        /// Here you will enter your localhost, your port and keep "/ecommerce" as your database
 useSSL=false
 ```
 
-Agora no modulo "application", execute o programa a partir da classe "Program".
+Now in the "application" module, run the program from the "Program" class.
 
 # DESAFIO 1
 
